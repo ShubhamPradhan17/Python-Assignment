@@ -1,16 +1,14 @@
 from collections import Counter
 
-class arithematics(list):
+class Arithematics(list):
     lst = []
     def __init__(self, lst):
         self.lst = lst
         self.len = len(lst)
 
     def mean(self):
-        sum = 0        
-        for i in self.lst:
-            sum += i
-        return sum/self.len
+        
+        return sum(self.lst)/self.len
     
     def median(self):
         self.nlst = sorted(self.lst)
@@ -31,7 +29,7 @@ class arithematics(list):
 
 
 lst = [1,4,5,3,6,7,2,2,1,4]
-s = arithematics(lst)
+s = Arithematics(lst)
 
 print(s.mean())
 print(s.median())
