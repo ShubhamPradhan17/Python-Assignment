@@ -2,15 +2,14 @@
 
 lst = ['name512', 'same1example', 'joy18full']
 count = 0   
-for i in lst:
+
+for idx, ele in enumerate(lst):
     temp = ""
-    for j in i:
+    for j in ele:
         if j.isalpha():
             temp += j
-        else: 
+        else:
             continue
-    
-    lst[count] = temp
-    count+=1
-
+        
+        lst[idx] = temp
 print(lst)
