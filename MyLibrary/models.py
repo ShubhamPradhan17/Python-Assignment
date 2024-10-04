@@ -1,8 +1,10 @@
 import os
 import bcrypt
 from sqlobject import SQLObject, StringCol, IntCol, DateTimeCol, ForeignKey, BoolCol, FloatCol, connectionForURI, sqlhub
+from dotenv import load_dotenv
 
 
+load_dotenv()
 db_path = os.path.abspath('my_library.db')
 connection_string = f'sqlite:///{db_path}'
 connection = connectionForURI(connection_string)
@@ -17,6 +19,7 @@ class Books(SQLObject):
     issued_count = IntCol(default=0)
     genre = StringCol(notNone = False)
     isbn = StringCol(notNone = False)
+    date_updated = DateTimeCol()
 
 class Members(SQLObject):
     first_name = StringCol(notNone = False)
@@ -32,10 +35,12 @@ class transactions(SQLObject):
     book = ForeignKey('Books', notNone=True)
     member = ForeignKey('Members', notNone=True)
     date_issued = DateTimeCol(default=DateTimeCol.now)
-    date_submission = DateTimeCol()
+    due_date = DateTimeCol()
+    date_submission = DateTimeCol(default=None)
     return_status = BoolCol(default=False)
     fine_amount = FloatCol(default=0.0)
 
+    
 
 # class Role(SQLObject):
 #     role_name = StringCol(unique=True, notNone=True)

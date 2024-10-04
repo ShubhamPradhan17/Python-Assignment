@@ -5,11 +5,14 @@ from routes.members import members_bp
 from routes.transaction import transactions_bp
 from routes.auth import auth_bp
 from routes.reports.report import report_bp
-
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
-app.config['JWT_SECRET_KEY'] = 'my_secret_key' 
+load_dotenv()
+
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY') 
 jwt = JWTManager(app)
 
 app.register_blueprint(books_bp)
